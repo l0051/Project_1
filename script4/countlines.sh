@@ -14,7 +14,7 @@ then
 	exit
 fi
 
-warning='An argument must be text file not directory'
+warning='An argument must be a regular file not directory'
 
 if [ -e ./$1 ]
 then
