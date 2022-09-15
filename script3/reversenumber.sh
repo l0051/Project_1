@@ -2,6 +2,12 @@
 
 # A shell script to print a number in reverse order
 
+if [ $# != 1 ]
+then
+	echo Must be one argument
+	exit
+fi
+
 number=$1
 
 if [ $number -eq 0 ]
