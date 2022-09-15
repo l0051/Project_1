@@ -24,7 +24,6 @@ then
 	else
 		wc -l < ./$1
 	fi
-	exit
 else
 	if [ -d $1 ]
 	then
@@ -32,6 +31,5 @@ else
 	else
 		wc -l < $1
 	fi
-	exit
 fi
 
