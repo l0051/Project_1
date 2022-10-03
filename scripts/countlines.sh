@@ -18,20 +18,4 @@ then
 	exit
 fi
 
-if [ -e ./$1 ]
-then
-	if [ -d ./$1 ]
-	then
-		echo $error_arg_is_directory
-	else
-		wc -l < ./$1
-	fi
-else
-	if [ -d $1 ]
-	then
-		echo $error_arg_is_directory
-	else
-		wc -l < $1
-	fi
-fi
-
+wc -l < $1
