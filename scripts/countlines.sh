@@ -18,4 +18,9 @@ then
 	exit
 fi
 
-wc -l < $1
+if [ -d $1 ]
+then
+	echo $error_arg_is_directory
+else
+	wc -l < $1
+fi
