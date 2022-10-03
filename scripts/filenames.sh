@@ -19,8 +19,8 @@ else
 	fi
 	if [ -d $1 ]
 	then
-		find . $1
+		find $1
 	else
-		find . ./$1
+		find ./$1
 	fi
 fi
