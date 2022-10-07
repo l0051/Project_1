@@ -21,13 +21,18 @@ then
 	exit 
 fi
 
+if [ ${1:0:1} = 0 ] && [ ! $1 = 0 ]
+then
+	echo $error_m_number
+	exit
+fi
+
 number=$1
 
-#28
-if [ $(($number - $maxI)) -gt 0 ]
+if [ ${#1} -gt ${#maxI} ] || [ $(($number - $maxI)) -gt 0 ]
 then
-	echo $error_m_too_big
-	exit
+        echo $error_m_too_big
+        exit
 fi
 
 if [ $number -eq 0 ]

@@ -14,18 +14,16 @@ then
         exit
 fi
 
-if [ ! -e $1 ]
+if [ ! -e "$1" ]
 then
         echo $error_m_no_path
         exit
 fi
 
-if [ -e $1 ]
+if [ -d "$1" ]
 then
-        if [ -d $1 ]
-        then
-                echo $m_dir
-        else
-                echo $m_reg
-        fi
+	echo $m_dir
+else
+	echo $m_reg
 fi
+
