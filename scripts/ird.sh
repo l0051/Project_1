@@ -10,20 +10,20 @@ error_m_no_path='No such path'
 
 if [ $# != 1 ]
 then
-        echo $error_m_one_arg
+        echo "$error_m_one_arg"
         exit
 fi
 
 if [ ! -e "$1" ]
 then
-        echo $error_m_no_path
+        echo "$error_m_no_path"
         exit
 fi
 
 if [ -d "$1" ]
 then
-	echo $m_dir
+	echo "$m_dir"
 else
-	echo $m_reg
+	echo "$m_reg"
 fi
 
