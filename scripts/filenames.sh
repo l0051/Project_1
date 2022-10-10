@@ -4,7 +4,7 @@
 
 if [ $# -gt 1 ]
 then
-	echo Must be 0 or 1 argument
+	echo "Must be 0 or 1 argument"
 	exit
 fi
 
@@ -14,7 +14,7 @@ then
 else
 	if [ ! -d $1 ] 
 	then
-		echo No such directory
+		echo "No such directory"
 		exit
 	else
 		find $1
