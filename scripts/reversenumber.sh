@@ -7,7 +7,7 @@ error_m_number='An argument should be a positive integer'
 
 maxI=$( echo "$(printf "%u" -1)" / 2  | bc ) 
 
-error_m_too_big="An argument should be less or equal than $maxI"
+error_m_too_big="An argument and it's reverse should be less or equal than $maxI"
 
 if [ $# != 1 ]
 then
@@ -29,12 +29,13 @@ fi
 
 number=$1
 
+
 while [ "${number:0:1}" = 0 ] && [ ! "$number" -eq 0 ]
 do
-	number="${number:1}"
+        number="${number:1}"
 done
 
-if [ "$number" -gt "$maxI" ] || [ $((number - maxI)) -gt 0 ]
+if [ ${#number} -gt ${#maxI} ] || [ $((number - maxI)) -gt 0 ]
 then
         echo "$error_m_too_big"
         exit
@@ -45,16 +46,25 @@ do
 	((number/=10))
 done
 
+answer=0
+
 if [ "$number" -eq 0 ]
 then
-        echo "$number"
+        echo "$answer"
         exit
 fi
 
-
 while [ "$number" -gt 0 ]
 do
-	echo -n $((number % 10))
+	((answer*=10))
+	((answer+=$((number%10))))
 	((number/=10))
 done
-echo ""
+
+if [ ${#answer} -gt ${#maxI} ] || [ $((answer - maxI)) -gt 0 ]
+then
+        echo "$error_m_too_big"
+        exit
+else
+	echo "$answer"
+fi
