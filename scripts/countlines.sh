@@ -4,7 +4,7 @@
 
 error_arg_is_directory='An argument must be a regular file not directory'
 error_one_arg='Must be one argument'
-error_arg_is_not_path='An argument is not a file path'
+error_arg_is_not_file_path='An argument is not a file path'
 
 if [ $# != 1 ]
 then
