@@ -1,4 +1,4 @@
-#include "foo.h"
+#include "hello_world.h"
 
 void hello()
 {

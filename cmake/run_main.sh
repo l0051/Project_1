@@ -2,13 +2,15 @@
 
 # Run program with CMakeLists.cpp
 
-if [ ! -d ./build ]
+if [ -d ./build ]
 then
-	mkdir build
+	rm -r build
 fi
+
+mkdir build
 
 cd build
 cmake ..
 make
-./exec
+./hello
 

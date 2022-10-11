@@ -1,4 +1,4 @@
-#include "lib/foo.h"
+#include "lib/hello_world.h"
 
 int main()
 {
