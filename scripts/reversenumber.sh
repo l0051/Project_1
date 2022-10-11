@@ -5,7 +5,7 @@
 error_m_one_arg='Must be one argument'
 error_m_number='An argument should be a positive integer'
 
-maxI=$( echo `printf "%u" -1` / 2  | bc ) 
+maxI=$( echo "$(printf "%u" -1)" / 2  | bc ) 
 
 error_m_too_big="An argument should be less or equal than $maxI"
 
@@ -21,29 +21,40 @@ then
 	exit 
 fi
 
-if [ ${1:0:1} = 0 ] && [ ! $1 = 0 ]
+if [[ $1 =~ ^[0]+$ ]]
 then
-	echo "$error_m_number"
-	exit
+        echo "0"
+        exit
 fi
 
 number=$1
 
-if [ ${#1} -gt ${#maxI} ] || [ $(($number - $maxI)) -gt 0 ]
+while [ "${number:0:1}" = 0 ] && [ ! "$number" -eq 0 ]
+do
+	number="${number:1}"
+done
+
+if [ "$number" -gt "$maxI" ] || [ $((number - maxI)) -gt 0 ]
 then
         echo "$error_m_too_big"
         exit
 fi
 
-if [ $number -eq 0 ]
-then
-	echo $number
-	exit
-fi
-
-while [ $number -gt 0 ]
+while [ $((number % 10)) -eq 0 ] && [ ! "$number" -eq 0 ]
 do
-	echo -n $(($number % 10))
 	((number/=10))
 done
-echo "" 
+
+if [ "$number" -eq 0 ]
+then
+        echo "$number"
+        exit
+fi
+
+
+while [ "$number" -gt 0 ]
+do
+	echo -n $((number % 10))
+	((number/=10))
+done
+echo ""
