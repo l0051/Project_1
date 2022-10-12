@@ -3,11 +3,12 @@
 # A shell script to print a number in reverse order
 
 error_m_one_arg='Must be one argument'
-error_m_number='An argument should be a positive integer'
+error_m_number='An argument should be an integer'
 
 maxI=$( echo "$(printf "%u" -1)" / 2  | bc ) 
 
-error_m_too_big="An argument and it's reverse should be less or equal than $maxI"
+error_m_too_big="An argument and it's reverse should be\
+less or equal than $maxI and more or equal to -$maxI"
 
 if [ $# != 1 ]
 then
@@ -15,20 +16,27 @@ then
 	exit
 fi
 
-if ! [[ $1 =~ ^[0-9]+$ ]]
+multiplier=1
+
+number=$1
+
+if [[ "${number:0:1}" = "-" ]]
+then
+        number="${number:1}"
+	multiplier=-1
+fi
+
+if ! [[ $number =~ ^[0-9]+$ ]]
 then
 	echo "$error_m_number"
 	exit 
 fi
 
-if [[ $1 =~ ^[0]+$ ]]
+if [[ $number =~ ^[0]+$ ]]
 then
         echo "0"
         exit
 fi
-
-number=$1
-
 
 while [ "${number:0:1}" = 0 ] && [ ! "$number" -eq 0 ]
 do
@@ -66,5 +74,6 @@ then
         echo "$error_m_too_big"
         exit
 else
+	((answer*=multiplier))
 	echo "$answer"
 fi
