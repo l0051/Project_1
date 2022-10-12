@@ -20,28 +20,27 @@ multiplier=1
 
 number=$1
 
-if [[ "${number:0:1}" = "-" ]]
-then
-        number="${number:1}"
-	multiplier=-1
-fi
+number_0_int=$( echo "$number" | grep "^-\?[0-9][0-9]*$" )
+number_int=$( expr "$number_0_int" : "-\?[0]*\(.*\)[0]*" )
 
-if ! [[ $number =~ ^[0-9]+$ ]]
+if [ "$number_0_int" = "" ]
 then
 	echo "$error_m_number"
-	exit 
-fi
-
-if [[ $number =~ ^[0]+$ ]]
+	exit
+elif [ "$number_int" = "" ]
 then
-        echo "0"
-        exit
+	number=0
+else
+	number="$number_int"
 fi
 
-while [ "${number:0:1}" = 0 ] && [ ! "$number" -eq 0 ]
-do
-        number="${number:1}"
-done
+if [ "$number" -lt 0 ]
+then
+	echo "mta"
+	((number*=-1))
+	echo $number
+	multiplier=-1
+fi
 
 if [ ${#number} -gt ${#maxI} ] || [ $((number - maxI)) -gt 0 ]
 then
@@ -49,18 +48,7 @@ then
         exit
 fi
 
-while [ $((number % 10)) -eq 0 ] && [ ! "$number" -eq 0 ]
-do
-	((number/=10))
-done
-
 answer=0
-
-if [ "$number" -eq 0 ]
-then
-        echo "$answer"
-        exit
-fi
 
 while [ "$number" -gt 0 ]
 do
