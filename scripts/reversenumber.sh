@@ -8,7 +8,7 @@ error_m_number='An argument should be an integer'
 maxI=$( echo "$(printf "%u" -1)" / 2  | bc ) 
 
 error_m_too_big="An argument and it's reverse should be\
-less or equal than $maxI and more or equal to -$maxI"
+less or equal than $maxI and more or equal than -$maxI"
 
 if [ $# != 1 ]
 then
