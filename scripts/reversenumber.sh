@@ -34,15 +34,15 @@ else
 	number="$number_int"
 fi
 
-if [ "$number_0_int" -lt 0 ]
-then
-	multiplier=-1
-fi
-
 if [ ${#number} -gt ${#maxI} ] || [ $((number - maxI)) -gt 0 ]
 then
         echo "$error_m_too_big"
         exit
+fi
+
+if [ "$number_0_int" -lt 0 ]
+then
+        multiplier=-1
 fi
 
 answer=0
