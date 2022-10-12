@@ -21,7 +21,7 @@ multiplier=1
 number=$1
 
 number_0_int=$( echo "$number" | grep "^-\?[0-9][0-9]*$" )
-number_int=$( expr "$number_0_int" : "-\?[0]*\(.*\)[0]*" )
+number_int=$( expr "$number_0_int" : "[-0]*\(.*\)[0]*" )
 
 if [ "$number_0_int" = "" ]
 then
@@ -34,11 +34,8 @@ else
 	number="$number_int"
 fi
 
-if [ "$number" -lt 0 ]
+if [ "$number_0_int" -lt 0 ]
 then
-	echo "mta"
-	((number*=-1))
-	echo $number
 	multiplier=-1
 fi
 
