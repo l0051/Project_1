@@ -10,55 +10,53 @@ maxI=$( echo "$(printf "%u" -1)" / 2  | bc )
 error_m_too_big="An argument and it's reverse should be\
 less or equal than $maxI and more or equal than -$maxI"
 
+maxI_half=$((maxI / 2))
+
+
 if [ $# != 1 ]
 then
 	echo "$error_m_one_arg"
 	exit
 fi
 
-multiplier=1
+number=$( echo "$1" | grep "^-\?[0-9][0-9]*$" )
 
-number=$1
-
-number_0_int=$( echo "$number" | grep "^-\?[0-9][0-9]*$" )
-number_int=$( expr "$number_0_int" : "[-0]*\(.*\)[0]*" )
-
-if [ "$number_0_int" = "" ]
+if [ "$number" = "" ]
 then
-	echo "$error_m_number"
-	exit
-elif [ "$number_int" = "" ]
-then
-	number=0
-else
-	number="$number_int"
+        echo "$error_m_number"
+        exit
 fi
 
-if [ ${#number} -gt ${#maxI} ] || [ $((number - maxI)) -gt 0 ]
+number=$( bc <<< "$number + 0" )
+
+if [ "${#number}" -gt $((${#maxI} + 1)) ]
+then
+	echo 1
+	echo "$error_m_too_big"
+        exit
+fi
+
+number_half=$((number / 2))
+
+if [ $((maxI_half + number_half)) -lt 0 ] || [ $((maxI_half + number_half)) -ge $maxI ]
 then
         echo "$error_m_too_big"
         exit
 fi
 
-if [ "$number_0_int" -lt 0 ]
-then
-        multiplier=-1
-fi
-
 answer=0
 
-while [ "$number" -gt 0 ]
+while ! [ "$number" -eq 0 ]
 do
 	((answer*=10))
 	((answer+=$((number%10))))
 	((number/=10))
 done
 
-if [ ${#answer} -gt ${#maxI} ] || [ $((answer - maxI)) -gt 0 ]
+if [ $((maxI_half + number_half)) -lt 0 ] || [ $((maxI_half + number_half)) -ge $maxI ]
 then
         echo "$error_m_too_big"
         exit
 else
-	((answer*=multiplier))
 	echo "$answer"
 fi
