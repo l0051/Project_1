@@ -6,11 +6,10 @@ error_m_one_arg='Must be one argument'
 error_m_number='An argument should be an integer'
 
 maxI=$( echo "$(printf "%u" -1)" / 2  | bc ) 
+minI=$((maxI*-1))
 
 error_m_too_big="An argument and it's reverse should be\
-less or equal than $maxI and more or equal than -$maxI"
-
-maxI_half=$((maxI / 2))
+less or equal than $maxI and more or equal than $minI"
 
 
 if [ $# != 1 ]
@@ -28,17 +27,15 @@ then
 fi
 
 number=$( bc <<< "$number + 0" )
+num_abs=${number#-}
 
-if [ "${#number}" -gt $((${#maxI} + 1)) ]
+if [ "${#num_abs}" -gt "${#maxI}" ]
 then
-	echo 1
 	echo "$error_m_too_big"
         exit
 fi
 
-number_half=$((number / 2))
-
-if [ $((maxI_half + number_half)) -lt 0 ] || [ $((maxI_half + number_half)) -ge $maxI ]
+if [ $((num_abs - maxI)) -gt 0 ]
 then
         echo "$error_m_too_big"
         exit
@@ -53,10 +50,10 @@ do
 	((number/=10))
 done
 
-if [ $((maxI_half + number_half)) -lt 0 ] || [ $((maxI_half + number_half)) -ge $maxI ]
+if [ $((${answer#-} - maxI)) -gt 0 ]
 then
         echo "$error_m_too_big"
         exit
-else
-	echo "$answer"
 fi
+
+echo "$answer"
