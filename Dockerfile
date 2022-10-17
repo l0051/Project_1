@@ -10,11 +10,11 @@ RUN DEBIAN_FRONTEND=noninteractive DEBCONF_NOWARNINGS=yes apt-get -y install bui
 
 COPY scripts .
 
-RUN ./scripts/ird .
+RUN ./ird.sh ./
 
-RUN ./scripts/reversenumber.sh 517
+RUN ./reversenumber.sh 517
 
-RUN ./scripts/filenames.sh .
+RUN ./filenames.sh ./
 
-RUN ./scripts/countlines.sh ird.sh
+RUN ./countlines.sh ird.sh
 
