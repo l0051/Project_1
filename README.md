@@ -21,7 +21,18 @@ scripts/reversenumber.sh
 scripts/countlines.sh
 
 
+
 Docker
 
 Create new docker from ubuntu image from docker file and preinstall “vim”
 and “build-essential” in it.
+Run scripts in it.
+
+
+To build docker write in terminal:
+
+docker build -t my_docker .
+
+To run docker write in terminal(you can add -it to run it iteratively):
+
+docker run my_docker
