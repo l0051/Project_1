@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(cmake)
+project(Hello_World)
 
-set(CMAKE_CXX_STANDART 14)
+add_executable(hello src/main.cpp src/hello_world.cpp)
 
-add_executable(hello main.cpp lib/hello_world.cpp lib/hello_world.h)
+include_directories(include/)
