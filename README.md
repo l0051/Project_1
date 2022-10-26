@@ -24,9 +24,8 @@ scripts/countlines.sh
 
 Docker
 
-Create new docker from ubuntu image from docker file and preinstall “vim”
-and “build-essential” in it.
-Run scripts in it.
+Create new docker from ubuntu image from docker file and preinstall “vim” and “build-essential” in it.
+Run scripts from /scripts directory in it.
 
 
 To build docker write in terminal:
