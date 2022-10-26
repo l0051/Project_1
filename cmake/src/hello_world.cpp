@@ -1,4 +1,4 @@
-#include "../include/hello_world.h"
+#include "hello_world.h"
 #include <iostream>
 
 void hello()
