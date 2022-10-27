@@ -11,13 +11,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y bc
 
-COPY ./../scripts .
+COPY scripts /scripts
 
-RUN ./ird.sh ./
+RUN ./scripts/ird.sh ./
 
-RUN ./reversenumber.sh 517
+RUN ./scripts/reversenumber.sh 517
 
-RUN ./filenames.sh ./
+RUN ./scripts/filenames.sh ./
 
-RUN ./countlines.sh ird.sh
+RUN ./scripts/countlines.sh ird.sh
 

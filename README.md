@@ -30,7 +30,7 @@ Run scripts from /scripts directory in it.
 
 To build docker write in terminal:
 
-docker build -t my_docker .
+docker build -f ./docker/Dockerfile -t my_docker .
 
 To run docker write in terminal(you can add -it to run it iteratively):
 
