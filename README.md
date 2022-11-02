@@ -1,6 +1,7 @@
 Cmake assignment
 
 ./cmake directory
+
 Project that build and link two files (c++) and one header file.
 Program prints:
 Hello
