@@ -1,17 +1,17 @@
 Cmake assignment
 
-
+./cmake directory
 Project that build and link two files (c++) and one header file.
 Program prints:
 Hello
 
 
-To build in cmake directory write following commands:
+To build execute the following commands:
 
-cd build
-cmake ..
-make
+	1)  cd build
+	2)  cmake ..
+	3)  make
 
-To run in build directory write in terminal:
+To run execute:
 
-./hello
+	./hello
