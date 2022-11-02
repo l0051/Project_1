@@ -19,3 +19,19 @@ scripts/reversenumber.sh
 4) Bash script that counts lines in file given in argument
 
 scripts/countlines.sh
+
+
+
+Docker
+
+Create new docker from ubuntu image from docker file and preinstall “vim” and “build-essential” in it.
+Run scripts from /scripts directory in it.
+
+
+To build docker write in terminal:
+
+docker build -f ./docker/Dockerfile -t my_docker .
+
+To run docker write in terminal(you can add -it to run it iteratively):
+
+docker run my_docker
